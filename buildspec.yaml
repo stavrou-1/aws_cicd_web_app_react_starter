@@ -1,0 +1,25 @@
+version: 0.2
+environment_variables:
+  plaintext:
+    S3_BUCKET: 'react-bucket-name'
+    BUILD_ENV: 'prod' # this should be an env variable
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - echo Installing source NPM dependencies
+      - npm install
+  build:
+    commands:
+      - echo Build started on `today`
+      - yarn build --prod
+  post_build:
+    commands:
+      - aws s3 cp ./build s3://${S3_BUCKET} --recursive
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - '**/*'
+  base-directory: './build'
+  discard-paths: yes
