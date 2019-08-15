@@ -6,6 +6,9 @@ set -euo pipefail
 
 ##### NOTE: THE BELOW VARIABLES MUST BE SET! ######
 # Name of an S3 bucket to be created -- MUST BE GLOBALLY UNIQUE!
+# Region name
+REGION_NAME='us-east-1'
+# Bucket name
 S3_BUCKET=MY-UNIQUE-BUCKETNAME
 # Cloudformation template name:
 CF_TEMPLATE_PATH=MY-CF-TEMPLATE-PATH
